@@ -23,7 +23,6 @@ export default function SearchBar({ onSearch }) {
         placeholder="Введите город для поиска"
       />
       <button onClick={handleSearch}>Search</button>
-      <p>{searchCityValue}</p>
     </div>
   );
 }

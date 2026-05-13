@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { Grid2x2 } from 'lucide-react';
-export default function Header() {
+export default function Header({}) {
   return (
   <div className={styles.header}>
     <div className={styles.containerPrimary}>
@@ -15,12 +15,11 @@ export default function Header() {
         </button>
         <div className={styles.menu__location}>
             <img src="" alt="значок геопозиции" />
-            <h4>Тут будет текст текущей позиции</h4>
+            <h4></h4>
         </div>
         
       </div>
 
-      <SearchBar />
 
       <div className={styles.header__settings}>
         <button className={styles.setting__theme}>

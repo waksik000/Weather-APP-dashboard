@@ -1,8 +1,17 @@
 import styles from "./WeatherCard.module.css"
 
-export default function WeatherCard() {
+export default function WeatherCard({weatherData, weatherLoading, weatherError}) {
 
+    
+    if (!weatherData) {
+        return (
+            <><div>Loading...</div></>
+        )
+    }
 
+    const cityTemp = weatherData.current.temp_c
+    const cityIcon = weatherData.current.condition.icon
+    const cityWind = weatherData.current.wind_mph
     return (
         <div className={styles.weatherCard}>
             <div className={styles.weatherCard__top}>
@@ -12,8 +21,10 @@ export default function WeatherCard() {
 
             <div className={styles.weatherCard__content}>
             <div className={styles.weatherCard__temperature}>
-                <h3 className={styles.temperature__number}>16</h3>
-                <img src="" alt="Иконка погоды(меняется взависимости от погоды)" />
+                <h3 className={styles.temperature__number}>{cityTemp}</h3>
+                <img src={cityIcon} alt="Иконка погоды" />
+
+                <p>Ветер {cityWind}</p>
             </div>
 
             </div>

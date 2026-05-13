@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import { Grid2x2, Bell, MapPin, Moon } from "lucide-react";
 
-export default function Header({ city, children }) {
+export default function Header({ city, children, toggleTheme }) {
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -23,7 +23,7 @@ export default function Header({ city, children }) {
         {children ? <div className={styles.header__center}>{children}</div> : null}
 
         <div className={styles.header__right}>
-          <button type="button" className={styles.header__theme} aria-label="Тема: тёмная">
+          <button type="button" className={styles.header__theme} aria-label="Тема: тёмная" onClick={toggleTheme}>
             <Moon />
           </button>
 

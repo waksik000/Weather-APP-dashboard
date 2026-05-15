@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import styles from "./SearchBar.module.css";
 
@@ -18,19 +18,24 @@ export default function SearchBar({ onSearch }) {
 
   // Debounce логика
   const debounceRef = useRef(null);
-
   const handleChange = (e) => {
     const newValue = e.target.value;
 
     setSearchCityValue(newValue);
 
-    
     clearTimeout(debounceRef.current);
 
     debounceRef.current = setTimeout(() => {
       onSearch(newValue);
     }, 700);
   };
+
+  // Input autofocus
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   return (
     <div className={styles.searchBar}>
@@ -43,6 +48,7 @@ export default function SearchBar({ onSearch }) {
           onChange={handleChange}
           onKeyDown={handleOnKeyDown}
           placeholder="Введите город для поиска"
+          ref={inputRef}
         />
       </div>
       <button

@@ -6,7 +6,9 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import useWeather from "./hooks/useWeather";
 import useTheme from "./hooks/useTheme";
 function App() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(() => {
+    return localStorage.getItem("city") || "";
+  });
   const [currentTheme, setCurrentTheme] = useState(() => {
     return localStorage.getItem("theme") || "dark";
   });
@@ -20,10 +22,15 @@ function App() {
 
   useTheme(currentTheme);
 
-  // local storage
+  // theme local storage
   useEffect(() => {
     localStorage.setItem("theme", currentTheme);
   }, [currentTheme]);
+
+  // city local storage
+  useEffect(() => {
+    localStorage.setItem("city", city);
+  }, [city]);
 
   return (
     <div className="dashboard">

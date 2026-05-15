@@ -14,7 +14,7 @@ export default function SearchBar({ onSearch }) {
     setSearchCityValue("");
 
     navigate("/");
-  }, []);
+  }, [searchCityValue, onSearch, navigate]);
 
   const handleOnKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -36,7 +36,6 @@ export default function SearchBar({ onSearch }) {
 
     debounceRef.current = setTimeout(() => {
       onSearch(newValue);
-      navigate("/");
 
       previousCityRef.current = newValue;
     }, 700);

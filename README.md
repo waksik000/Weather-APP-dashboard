@@ -7,7 +7,7 @@
 - useMemo
 - работа с API
 - работа с localStorage
-- debounce логика
+- debounce логика1
 
 ---
 

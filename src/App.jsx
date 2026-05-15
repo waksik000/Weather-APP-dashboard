@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import WeatherCard from "./components/weather/WeatherCard";
@@ -9,21 +9,17 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTheme, setCurrentTheme] = useState("dark");
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setCurrentTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  };
+  }, []);
 
   //api запрос
   const { weatherData, loading, error } = useWeather(city);
 
-
-  useTheme(currentTheme)
+  useTheme(currentTheme);
   return (
     <div className="dashboard">
-      <Header
-        city={city}
-        toggleTheme={toggleTheme}
-      >
+      <Header city={city} toggleTheme={toggleTheme}>
         <SearchBar onSearch={setCity} />
       </Header>
 

@@ -4,7 +4,8 @@ import WeekStrip from "./WeekStrip";
 import WeatherOverview from "./WeatherOverview";
 import PromoCard from "./PromoCard";
 import Sidebar from "./Sidebar";
-import styles from './WeatherCard.module.css'
+import styles from "./WeatherCard.module.css";
+import { useMemo } from "react";
 
 export default function WeatherCard(props) {
   const { weatherData, weatherLoading, weatherError } = props;
@@ -16,9 +17,11 @@ export default function WeatherCard(props) {
   const current = weatherData.current;
   const location = weatherData.location;
 
-  const locationLine = [location.name, location.region || location.country]
-    .filter(Boolean)
-    .join(", ");
+  const locationLine = useMemo(() => {
+    return [location.name, location.region || location.country]
+      .filter(Boolean)
+      .join(", ");
+  }, [location.name, location.region, location.country]);
 
   return (
     <div className={styles["weather-dashboard"]}>

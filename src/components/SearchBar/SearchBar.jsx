@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
   const [searchCityValue, setSearchCityValue] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     onSearch(searchCityValue);
     setSearchCityValue("");
-  };
+  }, []);
 
   const handleOnKeyDown = (e) => {
     if (e.key === "Enter") {

@@ -16,17 +16,22 @@ export default function SearchBar({ onSearch }) {
     }
   };
 
-  // Debounce логика
+  // Debounce логика + previous input value
   const debounceRef = useRef(null);
+  const previousCityRef = useRef(null);
   const handleChange = (e) => {
     const newValue = e.target.value;
 
     setSearchCityValue(newValue);
 
+    if (newValue === previousCityRef.current) return;
+
     clearTimeout(debounceRef.current);
 
     debounceRef.current = setTimeout(() => {
       onSearch(newValue);
+
+      previousCityRef.current = newValue;
     }, 700);
   };
 
@@ -34,7 +39,7 @@ export default function SearchBar({ onSearch }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
   return (

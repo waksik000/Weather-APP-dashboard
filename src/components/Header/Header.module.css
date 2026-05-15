@@ -65,7 +65,9 @@
   border-radius: var(--radius-sm);
   background: var(--color-surface-elevated);
   color: var(--color-text-muted);
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .header__iconBtn:hover {
@@ -117,7 +119,9 @@
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   color: var(--color-accent);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .header__theme:hover {
@@ -136,7 +140,11 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--color-border);
-  background: linear-gradient(135deg, var(--color-surface-elevated), var(--color-accent-soft));
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-elevated),
+    var(--color-accent-soft)
+  );
 }
 
 .header__avatarPlaceholder {
@@ -145,4 +153,10 @@
   border-radius: 50%;
   border: 2px solid var(--color-accent-soft);
   background: linear-gradient(145deg, #3d3d42, var(--color-surface-elevated));
+}
+
+.avatarLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }

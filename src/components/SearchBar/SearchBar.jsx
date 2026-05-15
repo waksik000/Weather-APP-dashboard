@@ -1,13 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import styles from "./SearchBar.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar({ onSearch }) {
   const [searchCityValue, setSearchCityValue] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = useCallback(() => {
+    if (!searchCityValue.trim()) return;
+
     onSearch(searchCityValue);
     setSearchCityValue("");
+
+    navigate("/");
   }, []);
 
   const handleOnKeyDown = (e) => {
@@ -30,6 +36,7 @@ export default function SearchBar({ onSearch }) {
 
     debounceRef.current = setTimeout(() => {
       onSearch(newValue);
+      navigate("/");
 
       previousCityRef.current = newValue;
     }, 700);

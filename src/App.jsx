@@ -1,10 +1,12 @@
-import { useEffect, useState, useCallback, use } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
-import WeatherCard from "./components/weather/WeatherCard";
 import SearchBar from "./components/SearchBar/SearchBar";
 import useWeather from "./hooks/useWeather";
 import useTheme from "./hooks/useTheme";
+import WeatherPage from "./pages/WeatherPage";
+import ProfilePage from "./pages/ProfilePage";
+import { Routes, Route } from "react-router-dom";
 function App() {
   const [city, setCity] = useState(() => {
     return localStorage.getItem("city") || "";
@@ -39,11 +41,19 @@ function App() {
       </Header>
 
       <main className="dashboard__main">
-        <WeatherCard
-          weatherData={weatherData}
-          weatherLoading={loading}
-          weatherError={error}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <WeatherPage
+                weatherData={weatherData}
+                loading={loading}
+                error={error}
+              />
+            }
+          />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
       </main>
     </div>
   );
